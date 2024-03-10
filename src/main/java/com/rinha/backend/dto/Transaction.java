@@ -29,6 +29,7 @@ public class Transaction {
     @JsonProperty(value = "descricao", required = true)
     @NotBlank(message = "A descrição é obrigatória")
     @Length(min = 1, max = 10, message = "A descrição deverá ter no máximo {max} caracteres")
+    @Pattern(regexp = "[a-zA-Z0-9 ]", message = "A descrição deve conter apenas letras e números")
     private String description;
 
     @JsonProperty("realizada_em")
