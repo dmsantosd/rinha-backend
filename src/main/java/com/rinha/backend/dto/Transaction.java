@@ -10,7 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -18,8 +18,8 @@ import java.time.LocalDateTime;
 public class Transaction {
     @JsonProperty(value = "valor", required = true)
     @Positive(message = "O valor deve ser maior ou igual à zero")
-    @Digits(integer = 38, fraction = 0, message = "O valor deve ter no máximo {integer} dígitos")
-    private BigInteger value;
+    @Digits(integer = 38, fraction = 0, message = "O valor deve ter no máximo {integer} dígitos e {fraction} casas decimais")
+    private BigDecimal value;
 
     @JsonProperty(value = "tipo", required = true)
     @NotBlank(message = "O tipo é obrigatório")
@@ -29,7 +29,6 @@ public class Transaction {
     @JsonProperty(value = "descricao", required = true)
     @NotBlank(message = "A descrição é obrigatória")
     @Length(min = 1, max = 10, message = "A descrição deverá ter no máximo {max} caracteres")
-    @Pattern(regexp = "[a-zA-Z0-9 ]", message = "A descrição deve conter apenas letras e números")
     private String description;
 
     @JsonProperty("realizada_em")

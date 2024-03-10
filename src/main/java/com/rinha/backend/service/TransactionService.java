@@ -68,7 +68,7 @@ public class TransactionService {
 
         var transactionBalance = processTransaction
                 .get(TransactionType.valueOfCode(transaction.getType()))
-                .process(client, transaction.getValue());
+                .process(client, transaction.getValue().toBigInteger());
 
         client.setBalance(transactionBalance.getBalance());
 
